@@ -94,7 +94,12 @@ export interface DirectusProviderProps {
  *
  *   const root = createRoot(document.getElementById('root'));
  *   root.render(
- *     <DirectusProvider apiUrl="https://api.example.com" options={{}} >
+ *     <DirectusProvider
+ *      apiUrl="https://directus.example.com"
+ *      options={}
+ *      autoLogin={true}
+ *      onAutoLoginError={(error) => console.warn(error)}
+ *    >
  *       <App />
  *     </DirectusProvider>
  *   );
