@@ -48,9 +48,14 @@ import { createRoot } from 'react-dom/client';
 const root = createRoot(document.getElementById('root'));
 
 root.render(
-  <DirectusProvider apiUrl="https://api.example.com" options={{}}>
+  <DirectusProvider
+    apiUrl='https://api.example.com'
+    options={{}}
+    autoLogin={true}
+    onAutoLoginError={err => console.warn(err)}
+  >
     <App />
-  </DirectusProvider>
+  </DirectusProvider>;
 );
 ```
 
