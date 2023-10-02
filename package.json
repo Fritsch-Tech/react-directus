@@ -40,12 +40,12 @@
   "author": "Marco Polichetti <gremo1982@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "@directus/sdk": "10.3.5",
-    "@rollup/plugin-typescript": "11.1.4",
+    "@directus/sdk": "^12.0.0",
     "@microsoft/api-documenter": "7.22.30",
     "@microsoft/api-extractor": "7.36.3",
     "@rollup/plugin-commonjs": "25.0.3",
     "@rollup/plugin-node-resolve": "15.1.0",
+    "@rollup/plugin-typescript": "11.1.4",
     "@testing-library/react": "14.0.0",
     "@types/jest": "29.5.5",
     "@types/react": "18.2.24",
@@ -66,12 +66,12 @@
     "rollup": "3.29.4",
     "rollup-plugin-typescript2": "0.36.0",
     "ts-jest": "29.1.1",
+    "tsc-alias": "1.8.7",
     "tslib": "2.6.2",
-    "typescript": "5.2.2",
-    "tsc-alias": "1.8.7"
+    "typescript": "5.2.2"
   },
   "peerDependencies": {
-    "@directus/sdk": "^9.0.0 || ^10.0.0",
+    "@directus/sdk": "^12.0.0",
     "react": "^17.0.0 || ^18.0.0",
     "react-dom": "^17.0.0 || ^18.0.0"
   }
