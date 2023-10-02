@@ -1,8 +1,8 @@
 import { createContext, Dispatch, ReactNode, SetStateAction, useContext, useEffect, useMemo, useState } from 'react';
 import { Directus, DirectusOptions, IDirectus, TypeMap, UserType } from '@directus/sdk';
-import { DirectusAsset, DirectusAssetProps } from '@components/DirectusAsset';
-import { DirectusImage, DirectusImageProps } from '@components/DirectusImage';
-import { AuthStates } from '@hooks/useDirectusAuth';
+import { DirectusAsset, DirectusAssetProps } from './components/DirectusAsset';
+import { DirectusImage, DirectusImageProps } from './components/DirectusImage';
+import { AuthStates } from './hooks/useDirectusAuth';
 
 /**
  * Shape of the main context.

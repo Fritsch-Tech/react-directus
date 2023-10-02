@@ -1,4 +1,4 @@
-import { DirectusAssetObject, DirectusFile, Fit, Format, RenderPropsFile } from '@components/DirectusFile';
+import { DirectusAssetObject, DirectusFile, Fit, Format, RenderPropsFile } from './DirectusFile';
 
 export interface RenderPropsImage extends Omit<DirectusImageProps, 'render'> {
   url?: string;

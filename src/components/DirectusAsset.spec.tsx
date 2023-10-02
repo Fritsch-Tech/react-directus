@@ -1,5 +1,5 @@
 import { act, render } from '@testing-library/react';
-import { DirectusAsset, RenderPropsAsset } from '@components/DirectusAsset';
+import { DirectusAsset, RenderPropsAsset } from './DirectusAsset';
 
 // eslint-disable-next-line @typescript-eslint/no-unused-vars
 const dummyRenderer = jest.fn<JSX.Element, [RenderPropsAsset]>(arg => <></>);
