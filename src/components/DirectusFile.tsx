@@ -1,12 +1,13 @@
-import { useContext, useEffect, useState } from 'react';
-import { DirectusContext } from '@/DirectusProvider';
+import { useCallback, useContext, useEffect, useState } from 'react';
+
+import { DirectusContext } from '../DirectusProvider';
 
 /**
  * DirectusAssetObject is the object that is returned by the Directus API when you request an asset.
  * It can be either the id of the asset or an object containing the id and additional information.
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-export type DirectusAssetObject = string | ({ id: string } & Record<string, any>);
+export type DirectusAssetObject = string | ({ id: string } & Record<string, any>) | null | undefined;
 
 /**
  * The fit of the thumbnail while always preserving the aspect ratio.
@@ -120,8 +121,8 @@ export const DirectusFile = ({
   render,
 }: DirectusFileProps): JSX.Element => {
   const directusContext = useContext(DirectusContext);
-  const { directus, apiUrl: contextApiUrl, _authState } = directusContext || {};
-  const apiUrl = propsApiUrl || contextApiUrl;
+  const { directus, apiUrl: contextApiUrl, _authState } = directusContext ?? {};
+  const apiUrl = propsApiUrl ?? contextApiUrl;
 
   if (!apiUrl) {
     throw new Error('DirectusFile requires either a DirectusProvider or an apiUrl prop');
@@ -129,34 +130,36 @@ export const DirectusFile = ({
 
   const assetId = asset && 'object' === typeof asset ? asset.id : asset;
 
-  if (!assetId) {
-    throw new Error('DirectusFile requires an asset id');
-  }
+  const generateImageUrl = useCallback(
+    (token: string | null = null): string => {
+      if (!assetId) {
+        return '';
+      }
+      const params = new URLSearchParams();
 
-  const generateImageUrl = (token: string | null = null): string => {
-    const params = new URLSearchParams();
+      if (token) {
+        params.append('access_token', token);
+      }
 
-    if (token) {
-      params.append('access_token', token);
-    }
+      if (download) {
+        params.append('download', '');
+      }
 
-    if (download) {
-      params.append('download', '');
-    }
-
-    if ('string' === typeof directusTransform) {
-      params.append('key', directusTransform);
-    } else if ('object' === typeof directusTransform) {
-      // Adds all the custom transforms to the params
-      for (const [key, value] of Object.entries(directusTransform)) {
-        if (value) {
-          params.append(key, value.toString());
+      if ('string' === typeof directusTransform) {
+        params.append('key', directusTransform);
+      } else if ('object' === typeof directusTransform) {
+        // Adds all the custom transforms to the params
+        for (const [key, value] of Object.entries(directusTransform)) {
+          if (value) {
+            params.append(key, value.toString());
+          }
         }
       }
-    }
 
-    return `${apiUrl}/assets/${assetId}${filename ? '/' + filename : ''}?${params.toString()}`;
-  };
+      return `${apiUrl}/assets/${assetId}${filename ? '/' + filename : ''}?${params.toString()}`;
+    },
+    [apiUrl, assetId, download, filename, directusTransform]
+  );
 
   const getInitialImageUrl = (): string | undefined => {
     if (propsAccessToken) {
@@ -171,7 +174,7 @@ export const DirectusFile = ({
 
   useEffect(() => {
     const gen = async () => {
-      const token = propsAccessToken || (await directus?.auth.token);
+      const token = propsAccessToken ?? (await directus?.getToken()) ?? null;
 
       setImageUrl(generateImageUrl(token));
     };

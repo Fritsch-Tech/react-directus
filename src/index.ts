@@ -1,5 +1,5 @@
 export { DirectusProvider, useDirectus } from './DirectusProvider';
-export { DirectusAsset } from './components/DirectusAsset';
-export { DirectusImage } from './components/DirectusImage';
 export { DirectusFile } from './components/DirectusFile';
-export { useDirectusAuth } from './hooks/useDirectusAuth';
+export { authStorageKey } from './authStores/settings';
+export { asyncAuthStorage } from './authStores/asyncAuthStorage';
+export { localAuthStorage } from './authStores/localAuthStorage';
