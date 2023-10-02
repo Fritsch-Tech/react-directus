@@ -17,9 +17,14 @@
   "scripts": {
     "lint": "eslint src/* --ext .ts,.tsx",
     "test": "jest",
-    "build": "rimraf dist/* && rollup -c --bundleConfigAsCjs",
     "prepublishOnly": "npm run build",
-    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json}\""
+    "build": "rimraf dist/* && rollup -c --bundleConfigAsCjs && tsc-alias",
+    "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json}\"",
+    "api-extract": "api-extractor run",
+    "api-documenter": "api-documenter markdown -i temp -o docs",
+    "docs": "npm run api-extract && npm run api-documenter",
+    "clean": "rimraf dist/* && rimraf docs/* && rimraf temp/*",
+    "pre-pull-request": " npm run clean && npm run format && npm run lint && npm run test && npm run build"
   },
   "pre-commit": [
     "format",
@@ -36,9 +41,11 @@
   "license": "ISC",
   "devDependencies": {
     "@directus/sdk": "10.3.5",
-    "@rollup/plugin-commonjs": "25.0.4",
-    "@rollup/plugin-node-resolve": "15.2.1",
     "@rollup/plugin-typescript": "11.1.4",
+    "@microsoft/api-documenter": "7.22.30",
+    "@microsoft/api-extractor": "7.36.3",
+    "@rollup/plugin-commonjs": "25.0.3",
+    "@rollup/plugin-node-resolve": "15.1.0",
     "@testing-library/react": "14.0.0",
     "@types/jest": "29.5.5",
     "@types/react": "18.2.24",
@@ -60,7 +67,8 @@
     "rollup-plugin-typescript2": "0.36.0",
     "ts-jest": "29.1.1",
     "tslib": "2.6.2",
-    "typescript": "5.2.2"
+    "typescript": "5.2.2",
+    "tsc-alias": "1.8.7"
   },
   "peerDependencies": {
     "@directus/sdk": "^9.0.0 || ^10.0.0",
