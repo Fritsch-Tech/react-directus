@@ -2,6 +2,12 @@
   "name": "react-directus",
   "version": "0.0.2",
   "description": "A set of React components and utilities for Directus Headless CMS",
+  "homepage": "https://github.com/gremo/react-directus",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gremo/react-directus.git"
+  },
+  "type": "module",
   "files": [
     "dist"
   ],
@@ -11,8 +17,8 @@
   "scripts": {
     "lint": "eslint src/* --ext .ts,.tsx",
     "test": "jest",
-    "prepublishOnly": "npm run build",
     "build": "rimraf dist/* && rollup -c --bundleConfigAsCjs",
+    "prepublishOnly": "npm run build",
     "format": "prettier --write \"**/*.{js,jsx,ts,tsx,json}\""
   },
   "pre-commit": [
@@ -30,29 +36,31 @@
   "license": "ISC",
   "devDependencies": {
     "@directus/sdk": "10.3.5",
-    "@rollup/plugin-commonjs": "25.0.3",
-    "@rollup/plugin-node-resolve": "15.1.0",
+    "@rollup/plugin-commonjs": "25.0.7",
+    "@rollup/plugin-node-resolve": "15.2.3",
+    "@rollup/plugin-typescript": "11.1.5",
     "@testing-library/react": "14.0.0",
-    "@types/jest": "29.5.3",
-    "@types/react": "18.2.18",
-    "@types/react-dom": "18.2.7",
-    "@typescript-eslint/eslint-plugin": "5.62.0",
-    "@typescript-eslint/parser": "5.62.0",
-    "eslint": "8.46.0",
-    "eslint-config-prettier": "8.10.0",
-    "eslint-plugin-prettier": "5.0.0",
+    "@types/jest": "29.5.7",
+    "@types/react": "18.2.36",
+    "@types/react-dom": "18.2.14",
+    "@typescript-eslint/eslint-plugin": "6.10.0",
+    "@typescript-eslint/parser": "6.10.0",
+    "eslint": "8.53.0",
+    "eslint-config-prettier": "9.0.0",
+    "eslint-plugin-prettier": "5.0.1",
     "eslint-plugin-tsdoc": "0.2.17",
-    "jest": "29.6.2",
-    "jest-environment-jsdom": "29.6.2",
+    "jest": "29.7.0",
+    "jest-environment-jsdom": "29.7.0",
     "pre-commit": "1.2.2",
-    "prettier": "3.0.1",
+    "prettier": "3.0.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "rimraf": "5.0.1",
-    "rollup": "3.27.2",
-    "rollup-plugin-typescript2": "0.35.0",
+    "rimraf": "5.0.5",
+    "rollup": "3.29.4",
+    "rollup-plugin-typescript2": "0.36.0",
     "ts-jest": "29.1.1",
-    "typescript": "5.1.6"
+    "tslib": "2.6.2",
+    "typescript": "5.2.2"
   },
   "peerDependencies": {
     "@directus/sdk": "^9.0.0 || ^10.0.0",
