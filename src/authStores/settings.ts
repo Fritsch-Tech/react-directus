@@ -1,1 +1,1 @@
-export const authStorageKey = 'directusAuth';
+export const authStorageKey = 'directus-auth';
